@@ -39,11 +39,24 @@ A real-time chatroom web application built using Java 17, Spring Boot, WebSocket
 
 3. **Run the Application**:
    ```sh
+   java -jar target/chatroom-0.0.1-SNAPSHOT.jar
+   ```
+   or
+   ```sh
    mvn spring-boot:run
    ```
 
 4. **Access the Application**:
-   Open your browser and navigate to `http://localhost:8080`.
+   Open your browser and navigate to `http://<Public IP Address>:8080`.
+
+5. **Deploy the Application on Artifactory**
+   ```sh
+   mvn clean deploy   
+   ```
+   or
+   ```sh
+   curl -v -u admin:password --upload-file target/chatroom-0.0.1-SNAPSHOT.jar "http://<IP_ADDRESS>:8081/repository/maven-snapshots/com/goldencat/chatroom/0.0.1-SNAPSHOT/chatroom-0.0.1-SNAPSHOT.jar"
+   ```
 
 ## Usage
 
@@ -52,7 +65,7 @@ A real-time chatroom web application built using Java 17, Spring Boot, WebSocket
 
 ## License
 
-This project is licensed under the **Goldencat Chatroom License**. You may use, modify, and distribute the software for personal, non-commercial use. Commercial use requires prior approval from the creator.
+This project is licensed under the **Chatroom License**. You may use, modify, and distribute the software for personal, non-commercial use. Commercial use requires prior approval from the creator.
 
 For more details, see the [LICENSE](./License.md) file.
 
