@@ -91,5 +91,6 @@
 			<url>http://18.209.19.26:8081/repository/maven-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
-
+	
+	<!-- works on tomcat 10 version only -->
 </project>
