@@ -26,7 +26,7 @@ pipeline{
         }
         stage('trivy scannig'){
           steps{
-            sh 'trivy fs --format table -o fs.html'
+            sh 'trivy fs --format table -o fs.html .'
           }
         }
         stage('package'){
