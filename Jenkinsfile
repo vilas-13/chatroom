@@ -4,6 +4,11 @@ pipeline{
         maven 'maven3'
     }
     stages{
+      stage('clean workspace'){
+        steps{
+          cleanWs()
+        }
+      }
         stage('clone'){
            steps{
              git 'https://github.com/vilas-13/chatroom.git'
@@ -18,6 +23,11 @@ pipeline{
            steps{
              sh 'mvn test'
            }
+        }
+        stage('trivy scannig'){
+          steps{
+            sh 'trivy fs --format table -o fs.html'
+          }
         }
         stage('package'){
             steps{
