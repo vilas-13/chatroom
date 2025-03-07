@@ -3,6 +3,9 @@ pipeline{
     tools{
         maven 'maven3'
     }
+    environment{
+        SONARQUBE_HOME = tool 'sonarqube-scanner' 
+    }
     stages{
       stage('clean workspace'){
         steps{
@@ -28,6 +31,14 @@ pipeline{
           steps{
             sh 'trivy fs --format table -o fs.html .'
           }
+        }
+         stage('sonarqube analasis'){
+            steps{
+                withSonarQubeEnv('sonarqube-server'){
+                    sh ''' $SONARQUBE_HOME/bin/sonar-scanner -Dsonar.projectKey=chatroom \
+                        -Dsonar.projectName=chatroom -Dsonar.java.binaries=target  '''
+                }
+            }
         }
         stage('package'){
             steps{
